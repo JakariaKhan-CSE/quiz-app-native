@@ -1,13 +1,13 @@
 package com.brain.storms.activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,6 +17,8 @@ import com.brain.storms.databinding.ActivityQuizBinding;
 import com.brain.storms.models.Question;
 import com.brain.storms.util.ScoreManager;
 import com.brain.storms.viewmodel.QuizViewModel;
+import com.google.android.material.button.MaterialButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,6 @@ public class QuizActivity extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private int score = 0;
     private ArrayList<Question> finishedQuestions = new ArrayList<>();
-    private Button selectedButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +37,30 @@ public class QuizActivity extends AppCompatActivity {
         binding = ActivityQuizBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Get options from Intent
+        // 1. Setup Back Button
+        binding.btnBack.setOnClickListener(v -> finish());
+
+        // 2. Get Intent Data
         Intent intent = getIntent();
         int amount = intent.getIntExtra("AMOUNT", 15);
         int categoryId = intent.getIntExtra("CATEGORY_ID", 0);
         String difficulty = intent.getStringExtra("DIFFICULTY");
-        if (difficulty.equals("Any Difficulty")) {
-            difficulty = ""; // API expects empty string for any
+
+        // API fix: "Any Difficulty" should be empty string
+        if (difficulty == null || difficulty.equals("Any Difficulty")) {
+            difficulty = "";
         }
 
+        // 3. Initialize ViewModel
         quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
-
         setupObservers();
         quizViewModel.fetchQuestions(amount, categoryId, difficulty);
 
-        binding.btnOption1.setOnClickListener(v -> onOptionClick((Button) v));
-        binding.btnOption2.setOnClickListener(v -> onOptionClick((Button) v));
-        binding.btnOption3.setOnClickListener(v -> onOptionClick((Button) v));
-        binding.btnOption4.setOnClickListener(v -> onOptionClick((Button) v));
+        // 4. Setup Listeners
+        binding.btnOption1.setOnClickListener(v -> onOptionClick(binding.btnOption1));
+        binding.btnOption2.setOnClickListener(v -> onOptionClick(binding.btnOption2));
+        binding.btnOption3.setOnClickListener(v -> onOptionClick(binding.btnOption3));
+        binding.btnOption4.setOnClickListener(v -> onOptionClick(binding.btnOption4));
     }
 
     private void setupObservers() {
@@ -64,13 +71,17 @@ public class QuizActivity extends AppCompatActivity {
 
         quizViewModel.getError().observe(this, error -> {
             if (error != null) {
-                binding.tvQuestion.setText(error);
+                binding.tvQuestion.setText("Error loading questions.\nPlease check your internet.");
             }
         });
 
         quizViewModel.getQuestionList().observe(this, questions -> {
             if (questions != null && !questions.isEmpty()) {
                 questionList = questions;
+
+                // Initialize Progress Bar Max
+                binding.quizProgressBar.setMax(questionList.size());
+
                 loadNextQuestion();
             } else {
                 binding.tvQuestion.setText("No questions found for these settings.");
@@ -80,78 +91,100 @@ public class QuizActivity extends AppCompatActivity {
 
     private void loadNextQuestion() {
         if (currentQuestionIndex < questionList.size()) {
-            resetButtonStyles();
-            Question question = questionList.get(currentQuestionIndex);
+            resetButtonStyles(); // Clear previous colors
 
-            // Add to list for results screen
+            Question question = questionList.get(currentQuestionIndex);
             finishedQuestions.add(question);
 
-            binding.tvQuestionCount.setText("Question: " + (currentQuestionIndex + 1) + "/" + questionList.size());
-            binding.tvQuestion.setText(Html.fromHtml(question.getQuestion()));
+            // Update UI Text
+            binding.tvQuestionCount.setText((currentQuestionIndex + 1) + "/" + questionList.size());
+            binding.tvQuestion.setText(Html.fromHtml(question.getQuestion(), Html.FROM_HTML_MODE_LEGACY));
 
+            // Update Progress Bar (Animated)
+            binding.quizProgressBar.setProgress(currentQuestionIndex + 1, true);
+
+            // Set Options Text
             List<String> answers = question.getAllAnswers();
-            binding.btnOption1.setText(Html.fromHtml(answers.get(0)));
-            binding.btnOption2.setText(Html.fromHtml(answers.get(1)));
-            binding.btnOption3.setText(Html.fromHtml(answers.get(2)));
-            binding.btnOption4.setText(Html.fromHtml(answers.get(3)));
+            binding.btnOption1.setText(Html.fromHtml(answers.get(0), Html.FROM_HTML_MODE_LEGACY));
+            binding.btnOption2.setText(Html.fromHtml(answers.get(1), Html.FROM_HTML_MODE_LEGACY));
+            binding.btnOption3.setText(Html.fromHtml(answers.get(2), Html.FROM_HTML_MODE_LEGACY));
+            binding.btnOption4.setText(Html.fromHtml(answers.get(3), Html.FROM_HTML_MODE_LEGACY));
 
             enableOptions(true);
         } else {
-            // End of quiz
             finishQuiz();
         }
     }
 
-    private void onOptionClick(Button button) {
-        enableOptions(false); // Disable buttons after selection
-        selectedButton = button;
-        String userAnswer = button.getText().toString();
-        Question currentQuestion = questionList.get(currentQuestionIndex);
-        currentQuestion.setUserAnswer(userAnswer); // Save user's answer
+    private void onOptionClick(MaterialButton selectedButton) {
+        enableOptions(false); // Prevent double clicking
 
-        String correctAnswer = Html.fromHtml(currentQuestion.getCorrectAnswer()).toString();
+        String userAnswer = selectedButton.getText().toString();
+        Question currentQuestion = questionList.get(currentQuestionIndex);
+        currentQuestion.setUserAnswer(userAnswer);
+
+        String correctAnswer = Html.fromHtml(currentQuestion.getCorrectAnswer(), Html.FROM_HTML_MODE_LEGACY).toString();
 
         if (userAnswer.equals(correctAnswer)) {
-            // Correct Answer
+            // --- CORRECT ---
             score++;
-            button.setBackgroundResource(R.drawable.btn_option_correct);
-            button.setTextColor(Color.WHITE);
+            setButtonState(selectedButton, R.color.correct_answer);
         } else {
-            // Wrong Answer
-            button.setBackgroundResource(R.drawable.btn_option_wrong);
-            button.setTextColor(Color.WHITE);
-            // Highlight the correct answer
+            // --- WRONG ---
+            setButtonState(selectedButton, R.color.wrong_answer);
+            // Show the user the correct one
             highlightCorrectAnswer(correctAnswer);
         }
 
-        // Move to next question after a delay
+        // Delay before next question
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             currentQuestionIndex++;
             loadNextQuestion();
-        }, 1500); // 1.5 second delay
+        }, 1500);
     }
 
+    // Helper to find and highlight the correct button if user was wrong
     private void highlightCorrectAnswer(String correctAnswer) {
-        if (binding.btnOption1.getText().toString().equals(correctAnswer)) {
-            binding.btnOption1.setBackgroundResource(R.drawable.btn_option_correct);
-            binding.btnOption1.setTextColor(Color.WHITE);
-        } else if (binding.btnOption2.getText().toString().equals(correctAnswer)) {
-            binding.btnOption2.setBackgroundResource(R.drawable.btn_option_correct);
-            binding.btnOption2.setTextColor(Color.WHITE);
-        } else if (binding.btnOption3.getText().toString().equals(correctAnswer)) {
-            binding.btnOption3.setBackgroundResource(R.drawable.btn_option_correct);
-            binding.btnOption3.setTextColor(Color.WHITE);
-        } else if (binding.btnOption4.getText().toString().equals(correctAnswer)) {
-            binding.btnOption4.setBackgroundResource(R.drawable.btn_option_correct);
-            binding.btnOption4.setTextColor(Color.WHITE);
+        MaterialButton[] buttons = {binding.btnOption1, binding.btnOption2, binding.btnOption3, binding.btnOption4};
+
+        for (MaterialButton btn : buttons) {
+            if (btn.getText().toString().equals(correctAnswer)) {
+                setButtonState(btn, R.color.correct_answer);
+                break;
+            }
         }
     }
 
+    // THE FIX: Programmatically styling MaterialButton
+    private void setButtonState(MaterialButton btn, int colorResId) {
+        int color = ContextCompat.getColor(this, colorResId);
+
+        // 1. Fill the background color
+        btn.setBackgroundColor(color);
+
+        // 2. Match the border color
+        btn.setStrokeColor(ColorStateList.valueOf(color));
+
+        // 3. Change text to white for contrast
+        btn.setTextColor(Color.WHITE);
+    }
+
+    // Reset to "Outlined" style
     private void resetButtonStyles() {
-        Button[] buttons = {binding.btnOption1, binding.btnOption2, binding.btnOption3, binding.btnOption4};
-        for (Button btn : buttons) {
-            btn.setBackgroundResource(R.drawable.btn_option_default);
-            btn.setTextColor(ContextCompat.getColor(this, R.color.text_dark));
+        MaterialButton[] buttons = {binding.btnOption1, binding.btnOption2, binding.btnOption3, binding.btnOption4};
+        int defaultTextColor = ContextCompat.getColor(this, R.color.text_dark);
+        int strokeColor = Color.parseColor("#D0D0D0");
+
+        for (MaterialButton btn : buttons) {
+            // Transparent background
+            btn.setBackgroundColor(Color.TRANSPARENT);
+
+            // Grey Border
+            btn.setStrokeColor(ColorStateList.valueOf(strokeColor));
+            btn.setStrokeWidth(2); // 2px width (approx 1dp)
+
+            // Dark Text
+            btn.setTextColor(defaultTextColor);
         }
     }
 
@@ -163,16 +196,16 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void finishQuiz() {
-        // Save new high score
         ScoreManager scoreManager = new ScoreManager(this);
         scoreManager.saveHighScore(score);
 
-        // Go to Result Activity
         Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
         intent.putExtra("SCORE", score);
         intent.putExtra("TOTAL_QUESTIONS", questionList.size());
+        // Make sure your Question model implements Parcelable or Serializable
         intent.putParcelableArrayListExtra("QUESTION_LIST", finishedQuestions);
+
         startActivity(intent);
-        finish(); // Finish this activity
+        finish();
     }
 }
