@@ -9,56 +9,93 @@
         android:background="@color/bg_main_start"
         tools:context=".activity.QuizActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/headerContainer"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:layout_height="0dp"
+            android:background="@color/bg_main_end"
+            android:alpha="0.5"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="-80dp"
+            android:layout_marginStart="-80dp"
+            android:background="@drawable/bg_circle_shape"
+            android:backgroundTint="@color/color_primary"
+            android:alpha="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="-50dp"
+            android:background="@drawable/bg_circle_shape"
+            android:backgroundTint="@color/color_accent"
+            android:alpha="0.05"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bg_circle_shape"
+            android:backgroundTint="@color/white"
             android:elevation="4dp"
-            android:background="@color/white"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/text_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/color_primary_dark"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@color/text_dark"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:ignore="ContentDescription" />
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/quizProgressBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:trackCornerRadius="4dp"
-                app:indicatorColor="@color/color_primary"
-                app:trackColor="#E0E0E0"
-                app:trackThickness="8dp"
-                android:progress="40"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvQuestionCount"
-                app:layout_constraintStart_toEndOf="@+id/btnBack"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvQuestionCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1/10"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/text_light"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:text="1 / 10"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </com.google.android.material.card.MaterialCardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/quizProgressBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:trackCornerRadius="8dp"
+            app:indicatorColor="@color/color_accent"
+            app:trackColor="@color/white"
+            app:trackThickness="6dp"
+            android:progress="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBack" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -75,10 +112,11 @@
             android:id="@+id/quizContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:fillViewport="true"
             android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headerContainer">
+            app:layout_constraintTop_toBottomOf="@+id/quizProgressBar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -89,11 +127,10 @@
                     android:id="@+id/tvQuestion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="sans-serif-medium"
                     android:lineSpacingMultiplier="1.2"
                     android:textColor="@color/text_dark"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     android:gravity="start"
                     app:layout_constraintTop_toTopOf="parent"
@@ -103,7 +140,7 @@
                     android:id="@+id/linearOptions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="32dp"
                     android:orientation="vertical"
                     app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -111,84 +148,95 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOption1"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="64dp"
-                        android:layout_marginBottom="12dp"
+                        android:minHeight="72dp"
+                        android:layout_marginBottom="16dp"
                         android:text="Hippopotomonstrosesquippedaliophobia"
                         android:textColor="@color/text_dark"
+                        android:backgroundTint="@color/white"
                         android:textAllCaps="false"
                         android:textSize="16sp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="24dp"
                         android:paddingEnd="24dp"
-                        android:letterSpacing="0"
-                        app:cornerRadius="12dp"
-                        app:strokeColor="#D0D0D0"
-                        app:strokeWidth="1dp" />
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:letterSpacing="0.02"
+                        android:stateListAnimator="@null"
+                        app:elevation="4dp"
+                        app:cornerRadius="16dp"
+                        app:rippleColor="@color/bg_main_end" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOption2"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="64dp"
-                        android:layout_marginBottom="12dp"
+                        android:minHeight="72dp"
+                        android:layout_marginBottom="16dp"
                         android:text="Arachnophobia"
                         android:textColor="@color/text_dark"
+                        android:backgroundTint="@color/white"
                         android:textAllCaps="false"
                         android:textSize="16sp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="24dp"
                         android:paddingEnd="24dp"
-                        android:letterSpacing="0"
-                        app:cornerRadius="12dp"
-                        app:strokeColor="#D0D0D0"
-                        app:strokeWidth="1dp" />
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:letterSpacing="0.02"
+                        android:stateListAnimator="@null"
+                        app:elevation="4dp"
+                        app:cornerRadius="16dp"
+                        app:rippleColor="@color/bg_main_end" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOption3"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="64dp"
-                        android:layout_marginBottom="12dp"
+                        android:minHeight="72dp"
+                        android:layout_marginBottom="16dp"
                         android:text="Cynophobia"
                         android:textColor="@color/text_dark"
+                        android:backgroundTint="@color/white"
                         android:textAllCaps="false"
                         android:textSize="16sp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="24dp"
                         android:paddingEnd="24dp"
-                        android:letterSpacing="0"
-                        app:cornerRadius="12dp"
-                        app:strokeColor="#D0D0D0"
-                        app:strokeWidth="1dp" />
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:letterSpacing="0.02"
+                        android:stateListAnimator="@null"
+                        app:elevation="4dp"
+                        app:cornerRadius="16dp"
+                        app:rippleColor="@color/bg_main_end" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOption4"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="64dp"
+                        android:minHeight="72dp"
                         android:layout_marginBottom="32dp"
                         android:text="Acrophobia"
                         android:textColor="@color/text_dark"
+                        android:backgroundTint="@color/white"
                         android:textAllCaps="false"
                         android:textSize="16sp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="24dp"
                         android:paddingEnd="24dp"
-                        android:letterSpacing="0"
-                        app:cornerRadius="12dp"
-                        app:strokeColor="#D0D0D0"
-                        app:strokeWidth="1dp" />
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:letterSpacing="0.02"
+                        android:stateListAnimator="@null"
+                        app:elevation="4dp"
+                        app:cornerRadius="16dp"
+                        app:rippleColor="@color/bg_main_end" />
 
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
