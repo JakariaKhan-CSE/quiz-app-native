@@ -2,118 +2,135 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_main_gradient"
-    tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardLogoContainer"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        app:cardCornerRadius="80dp"
-        app:cardElevation="12dp"
-        app:cardBackgroundColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F6F8"
+        tools:context=".MainActivity">
 
         <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp"
+            android:id="@+id/imgHero"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
-            android:contentDescription="App Logo" />
-    </androidx.cardview.widget.CardView>
+            android:alpha="0.1"
+            app:layout_constraintHeight_percent="0.55"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif-black"
-        android:letterSpacing="0.05"
-        android:shadowColor="#80000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4"
-        android:text="MindSpark"
-        android:textColor="@color/white"
-        android:textSize="38sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardLogoContainer" />
+        <View
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/bg_circle_shape"
+            android:backgroundTint="#E3F2FD"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStart"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="48dp"
-        android:elevation="6dp"
-        android:text="Start Quiz"
-        android:textAllCaps="false"
-        android:textColor="@color/color_primary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/white"
-        app:cornerRadius="32dp"
-        app:icon="@drawable/ic_play_arrow"
-        app:iconGravity="textStart"
-        app:iconSize="24dp"
-        app:iconTint="@color/color_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Mind\nSpark."
+            android:textColor="#1A237E"
+            android:textSize="56sp"
+            android:lineSpacingMultiplier="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRecord"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:text="Record"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:cornerRadius="32dp"
-        app:icon="@drawable/ic_mic"
-        app:iconGravity="textStart"
-        app:iconTint="@color/white"
-        app:strokeColor="@color/white"
-        app:strokeWidth="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/btnStart"
-        app:layout_constraintStart_toStartOf="@+id/btnStart"
-        app:layout_constraintTop_toBottomOf="@+id/btnStart" />
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Ignite your intelligence\ndaily."
+            android:textColor="#546E7A"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnQuit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:text="Quit App"
-        android:textAllCaps="false"
-        android:textColor="#B3FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/white"
+            app:strokeColor="#F0F0F0"
+            app:strokeWidth="1dp"
+            app:cardElevation="20dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.App.LargeComponent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgHero"
+            app:layout_constraintVertical_bias="1.0">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="32dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:text="Start Quiz"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.05"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_play_arrow"
+                    app:iconGravity="textStart"
+                    app:iconPadding="16dp"
+                    app:backgroundTint="#304FFE"
+                    app:layout_constraintBottom_toTopOf="@+id/btnRecord"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRecord"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Record Stats"
+                    android:textColor="#304FFE"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#304FFE"
+                    app:strokeWidth="2dp"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_mic"
+                    app:iconTint="#304FFE"
+                    app:iconGravity="textStart"
+                    app:iconPadding="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/btnQuit"
+                    app:layout_constraintTop_toBottomOf="@+id/btnStart" />
+
+                <TextView
+                    android:id="@+id/btnQuit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Exit Application"
+                    android:textColor="#90A4AE"
+                    android:textSize="14sp"
+                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnRecord" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
