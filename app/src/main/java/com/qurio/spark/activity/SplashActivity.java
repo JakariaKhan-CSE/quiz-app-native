@@ -1,4 +1,4 @@
-package com.Qurio.spark.activity;
+package com.qurio.spark.activity;
 
 
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 
-import com.Qurio.spark.MainActivity;
+import com.qurio.spark.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

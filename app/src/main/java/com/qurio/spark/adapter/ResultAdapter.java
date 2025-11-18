@@ -1,4 +1,4 @@
-package com.Qurio.spark.adapter;
+package com.qurio.spark.adapter;
 
 import android.content.Context;
 import android.text.Html;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Qurio.spark.R;
-import com.Qurio.spark.models.Question;
+import com.qurio.spark.R;
+import com.qurio.spark.models.Question;
 
 import java.util.List;
 

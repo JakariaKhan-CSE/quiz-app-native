@@ -1,4 +1,4 @@
-package com.Qurio.spark;
+package com.qurio.spark;
 
 import org.junit.Test;
 

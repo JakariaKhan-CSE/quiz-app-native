@@ -1,11 +1,11 @@
-package com.Qurio.spark.activity;
+package com.qurio.spark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import com.Qurio.spark.MainActivity;
-import com.Qurio.spark.databinding.ActivityScoreBinding;
-import com.Qurio.spark.util.ScoreManager;
+import com.qurio.spark.MainActivity;
+import com.qurio.spark.databinding.ActivityScoreBinding;
+import com.qurio.spark.util.ScoreManager;
 
 public class ScoreActivity extends AppCompatActivity {
 

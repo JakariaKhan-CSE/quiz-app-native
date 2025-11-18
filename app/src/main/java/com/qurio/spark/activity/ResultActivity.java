@@ -1,14 +1,14 @@
-package com.Qurio.spark.activity;
+package com.qurio.spark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.Qurio.spark.MainActivity;
-import com.Qurio.spark.adapter.ResultAdapter;
-import com.Qurio.spark.databinding.ActivityResultBinding;
-import com.Qurio.spark.models.Question;
+import com.qurio.spark.MainActivity;
+import com.qurio.spark.adapter.ResultAdapter;
+import com.qurio.spark.databinding.ActivityResultBinding;
+import com.qurio.spark.models.Question;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.Qurio.spark.models;
+package com.qurio.spark.models;
 
 
 import android.os.Parcel;

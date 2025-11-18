@@ -1,4 +1,4 @@
-package com.Qurio.spark.network;
+package com.qurio.spark.network;
 
 
 import retrofit2.Retrofit;
