@@ -1,4 +1,4 @@
-package com.qurio.spark.viewmodel;
+package com.synapse.spark.viewmodel;
 
 
 import android.text.Html;
@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.qurio.spark.TriviaResponse;
-import com.qurio.spark.models.Question;
-import com.qurio.spark.network.ApiClient;
-import com.qurio.spark.network.ApiService;
+import com.synapse.spark.TriviaResponse;
+import com.synapse.spark.models.Question;
+import com.synapse.spark.network.ApiClient;
+import com.synapse.spark.network.ApiService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

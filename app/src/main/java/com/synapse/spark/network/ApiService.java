@@ -1,6 +1,6 @@
-package com.qurio.spark.network;
+package com.synapse.spark.network;
 
-import com.qurio.spark.TriviaResponse;
+import com.synapse.spark.TriviaResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

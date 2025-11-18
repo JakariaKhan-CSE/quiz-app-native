@@ -1,7 +1,7 @@
-package com.qurio.spark;
+package com.synapse.spark;
 
 
-import com.qurio.spark.models.Question;
+import com.synapse.spark.models.Question;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 

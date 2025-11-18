@@ -1,10 +1,10 @@
-package com.qurio.spark.activity;
+package com.synapse.spark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-import com.qurio.spark.databinding.ActivityQuizOptionsBinding;
+import com.synapse.spark.databinding.ActivityQuizOptionsBinding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

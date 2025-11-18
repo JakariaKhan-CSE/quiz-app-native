@@ -1,4 +1,4 @@
-package com.qurio.spark;
+package com.synapse.spark;
 
 import android.content.Context;
 
