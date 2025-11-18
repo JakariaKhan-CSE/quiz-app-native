@@ -1,11 +1,11 @@
-package com.brain.storms.activity;
+package com.mind.spark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import com.brain.storms.MainActivity;
-import com.brain.storms.databinding.ActivityScoreBinding;
-import com.brain.storms.util.ScoreManager;
+import com.mind.spark.MainActivity;
+import com.mind.spark.databinding.ActivityScoreBinding;
+import com.mind.spark.util.ScoreManager;
 
 public class ScoreActivity extends AppCompatActivity {
 

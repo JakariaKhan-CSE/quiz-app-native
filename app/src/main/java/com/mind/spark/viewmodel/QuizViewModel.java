@@ -1,4 +1,4 @@
-package com.brain.storms.viewmodel;
+package com.mind.spark.viewmodel;
 
 
 import android.text.Html;
@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.brain.storms.TriviaResponse;
-import com.brain.storms.models.Question;
-import com.brain.storms.network.ApiClient;
-import com.brain.storms.network.ApiService;
+import com.mind.spark.TriviaResponse;
+import com.mind.spark.models.Question;
+import com.mind.spark.network.ApiClient;
+import com.mind.spark.network.ApiService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

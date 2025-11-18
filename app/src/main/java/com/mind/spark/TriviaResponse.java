@@ -1,7 +1,7 @@
-package com.brain.storms;
+package com.mind.spark;
 
 
-import com.brain.storms.models.Question;
+import com.mind.spark.models.Question;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 

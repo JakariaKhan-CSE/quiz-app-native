@@ -1,4 +1,4 @@
-package com.brain.storms.activity;
+package com.mind.spark.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -12,11 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.brain.storms.R;
-import com.brain.storms.databinding.ActivityQuizBinding;
-import com.brain.storms.models.Question;
-import com.brain.storms.util.ScoreManager;
-import com.brain.storms.viewmodel.QuizViewModel;
+import com.mind.spark.R;
+import com.mind.spark.databinding.ActivityQuizBinding;
+import com.mind.spark.models.Question;
+import com.mind.spark.util.ScoreManager;
+import com.mind.spark.viewmodel.QuizViewModel;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;

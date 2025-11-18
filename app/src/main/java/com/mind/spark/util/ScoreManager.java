@@ -1,4 +1,4 @@
-package com.brain.storms.util;
+package com.mind.spark.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

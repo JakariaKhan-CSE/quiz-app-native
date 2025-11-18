@@ -1,4 +1,4 @@
-package com.brain.storms.adapter;
+package com.mind.spark.adapter;
 
 import android.content.Context;
 import android.text.Html;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.brain.storms.R;
-import com.brain.storms.models.Question;
+import com.mind.spark.R;
+import com.mind.spark.models.Question;
 
 import java.util.List;
 

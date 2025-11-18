@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.brain.storms"
+    namespace = "com.mind.spark"
     compileSdk {
         version = release(36)
     }
@@ -11,7 +11,7 @@ android {
         dataBinding = true
     }
     defaultConfig {
-        applicationId = "com.brain.storms"
+        applicationId = "com.mind.spark"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

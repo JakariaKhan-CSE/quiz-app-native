@@ -1,4 +1,4 @@
-package com.brain.storms.network;
+package com.mind.spark.network;
 
 
 import retrofit2.Retrofit;

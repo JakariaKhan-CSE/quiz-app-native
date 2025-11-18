@@ -1,4 +1,4 @@
-package com.brain.storms;
+package com.mind.spark;
 
 import org.junit.Test;
 

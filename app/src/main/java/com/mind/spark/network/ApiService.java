@@ -1,6 +1,6 @@
-package com.brain.storms.network;
+package com.mind.spark.network;
 
-import com.brain.storms.TriviaResponse;
+import com.mind.spark.TriviaResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

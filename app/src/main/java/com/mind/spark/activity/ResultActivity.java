@@ -1,14 +1,14 @@
-package com.brain.storms.activity;
+package com.mind.spark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.brain.storms.MainActivity;
-import com.brain.storms.adapter.ResultAdapter;
-import com.brain.storms.databinding.ActivityResultBinding;
-import com.brain.storms.models.Question;
+import com.mind.spark.MainActivity;
+import com.mind.spark.adapter.ResultAdapter;
+import com.mind.spark.databinding.ActivityResultBinding;
+import com.mind.spark.models.Question;
 
 import java.util.ArrayList;
 

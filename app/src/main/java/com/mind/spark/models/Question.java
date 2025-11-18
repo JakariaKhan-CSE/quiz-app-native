@@ -1,4 +1,4 @@
-package com.brain.storms.models;
+package com.mind.spark.models;
 
 
 import android.os.Parcel;

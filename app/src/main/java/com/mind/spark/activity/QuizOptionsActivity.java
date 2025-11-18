@@ -1,10 +1,10 @@
-package com.brain.storms.activity;
+package com.mind.spark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-import com.brain.storms.databinding.ActivityQuizOptionsBinding;
+import com.mind.spark.databinding.ActivityQuizOptionsBinding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

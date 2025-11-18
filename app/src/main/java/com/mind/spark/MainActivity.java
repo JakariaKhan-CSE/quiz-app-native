@@ -1,4 +1,4 @@
-package com.brain.storms;
+package com.mind.spark;
 
 import android.os.Bundle;
 
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
-import com.brain.storms.activity.QuizOptionsActivity;
-import com.brain.storms.activity.ScoreActivity;
-import com.brain.storms.databinding.ActivityMainBinding;
+import com.mind.spark.activity.QuizOptionsActivity;
+import com.mind.spark.activity.ScoreActivity;
+import com.mind.spark.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
