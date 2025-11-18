@@ -2,87 +2,142 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_main_gradient"
-    tools:context=".activity.QuizOptionsActivity">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/bg_main_start"
+        tools:context=".activity.QuizOptionsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="24dp">
+            android:padding="16dp"
+            android:elevation="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/text_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/tvSelectCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Category"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="Game Setup"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/color_primary_dark"
+                android:textSize="24sp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@+id/btnBack"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinnerCategory"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/spinner_bg"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSelectCategory" />
-
-            <TextView
-                android:id="@+id/tvSelectDifficulty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Select Difficulty"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
-
-            <Spinner
-                android:id="@+id/spinnerDifficulty"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/spinner_bg"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSelectDifficulty" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnStartQuiz"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="48dp"
-                android:background="@drawable/btn_primary_gradient"
-                android:text="Let's Go!"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerDifficulty"
-                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:padding="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/headerContainer"
+            app:layout_constraintBottom_toTopOf="@+id/btnStartQuiz">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customize your challenge"
+                    android:textColor="@color/text_light"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="32dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCategory"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:hint="Select Category"
+                    app:startIconDrawable="@drawable/ic_category"
+                    app:startIconTint="@color/color_primary"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="@color/color_primary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spinnerCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDifficulty"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Difficulty"
+                    app:startIconDrawable="@drawable/ic_difficulty"
+                    app:startIconTint="@color/color_primary"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="@color/color_primary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spinnerDifficulty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_margin="24dp"
+            android:text="Start Game"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:backgroundTint="@color/color_primary"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/ic_play_arrow"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
