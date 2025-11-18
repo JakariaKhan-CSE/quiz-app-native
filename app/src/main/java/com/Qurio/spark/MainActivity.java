@@ -1,4 +1,4 @@
-package com.mind.spark;
+package com.Qurio.spark;
 
 import android.os.Bundle;
 
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
-import com.mind.spark.activity.QuizOptionsActivity;
-import com.mind.spark.activity.ScoreActivity;
-import com.mind.spark.databinding.ActivityMainBinding;
+import com.Qurio.spark.activity.QuizOptionsActivity;
+import com.Qurio.spark.activity.ScoreActivity;
+import com.Qurio.spark.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

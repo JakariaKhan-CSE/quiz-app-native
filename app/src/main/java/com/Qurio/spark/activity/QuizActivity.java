@@ -1,4 +1,4 @@
-package com.mind.spark.activity;
+package com.Qurio.spark.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -12,11 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.mind.spark.R;
-import com.mind.spark.databinding.ActivityQuizBinding;
-import com.mind.spark.models.Question;
-import com.mind.spark.util.ScoreManager;
-import com.mind.spark.viewmodel.QuizViewModel;
+import com.Qurio.spark.R;
+import com.Qurio.spark.databinding.ActivityQuizBinding;
+import com.Qurio.spark.models.Question;
+import com.Qurio.spark.util.ScoreManager;
+import com.Qurio.spark.viewmodel.QuizViewModel;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;

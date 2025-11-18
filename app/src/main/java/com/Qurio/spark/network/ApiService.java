@@ -1,6 +1,6 @@
-package com.mind.spark.network;
+package com.Qurio.spark.network;
 
-import com.mind.spark.TriviaResponse;
+import com.Qurio.spark.TriviaResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

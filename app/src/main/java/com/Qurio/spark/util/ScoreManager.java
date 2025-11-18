@@ -1,4 +1,4 @@
-package com.mind.spark.util;
+package com.Qurio.spark.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

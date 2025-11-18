@@ -1,4 +1,4 @@
-package com.mind.spark;
+package com.Qurio.spark;
 
 import android.content.Context;
 

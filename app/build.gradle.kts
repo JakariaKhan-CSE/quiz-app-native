@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mind.spark"
+    namespace = "com.Qurio.spark"
     compileSdk {
         version = release(36)
     }
@@ -11,7 +11,7 @@ android {
         dataBinding = true
     }
     defaultConfig {
-        applicationId = "com.mind.spark"
+        applicationId = "com.Qurio.spark"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
