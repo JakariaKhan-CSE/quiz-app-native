@@ -49,7 +49,7 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="4"
-        android:text="BrainBlitz"
+        android:text="MindSpark"
         android:textColor="@color/white"
         android:textSize="38sp"
         android:textStyle="bold"
